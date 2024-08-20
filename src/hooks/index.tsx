@@ -1,7 +1,11 @@
 import { AuthProvider } from "./Auth";
 import { FontProvider } from "./Font";
 
-export function AppProvider({children}: any) {
+type ChildrenType = {
+    children: React.JSX.Element;
+}
+
+export function AppProvider({children}: ChildrenType) {
     return <FontProvider>
                 <AuthProvider>
                     {children}

@@ -1,11 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { BackHandler, Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import { useAuth } from '../hooks/Auth';
 import { router } from 'expo-router';
 
-export default function App() {
-
-  const { signIn } = useAuth();
+export default function Test() {
+    const { signIn } = useAuth();
 
   const handleSignIn = async (username: string, password: string) => {
     try {
@@ -20,22 +19,22 @@ export default function App() {
     <View style={styles.container}>
       <Text style={styles.text}>Application</Text>
         <Button title='Signin' onPress={() => handleSignIn("patrick.anjos", "123456")}/>
-        <Button title='SAIR DO APP' onPress={() => BackHandler.exitApp()}/>
       <StatusBar style="auto" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily: 'bold'
-  },
-  text: {
-    fontFamily: 'light',
-    fontSize: 20
-  }
-});
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: 'bold'
+    },
+    text: {
+      fontFamily: 'light',
+      fontSize: 20
+    }
+  });
+  

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { IUser } from "../../interfaces/IUser";
+import { router } from "expo-router";
 
 type ChildrenType = {
     children: React.JSX.Element;
@@ -15,13 +16,9 @@ const AuthContext = createContext({} as AuthType);
 
 export function AuthProvider({children}: ChildrenType) {
 
-    const [user, setUser] = useState<IUser | null>(null);
+    const [user, setUser] = useState<IUser | null>(null!);
 
     const signIn = async (username: string, password: string) => {
-
-        if (username == "" && password === "") {
-            setUser(null);
-        }
 
         const user = {id: 1, name: 'Patrick', email: 'patrick.anjos@github.com.br', username, password}
 
