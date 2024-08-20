@@ -1,10 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { useAuth } from '../hooks/Auth';
 
 export default function App() {
+
+  const { signIn, signOut, user } = useAuth();
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Application</Text>
+      {user ? <Button title='Signout' onPress={() => signOut()}/> : <Button title='Signin' onPress={() => signIn("patrick.anjos", "123456")}/>}
       <StatusBar style="auto" />
     </View>
   );
