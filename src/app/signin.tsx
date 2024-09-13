@@ -18,7 +18,7 @@ export default function Test() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Application</Text>
-        <Button title='Signin' onPress={() => handleSignIn("patrick.anjos", "123456")}/>
+        <Button title='Signin' onPress={() => handleSignIn("patrick.anjos", "Mudar@123")}/>
       <StatusBar style="auto" />
     </View>
   );

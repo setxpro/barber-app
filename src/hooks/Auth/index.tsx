@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { IUser } from "../../interfaces/IUser";
-import { router } from "expo-router";
+import { useUsersDb } from "../../database/useUsersDatabase";
 
 type ChildrenType = {
     children: React.JSX.Element;
@@ -17,12 +17,43 @@ const AuthContext = createContext({} as AuthType);
 export function AuthProvider({children}: ChildrenType) {
 
     const [user, setUser] = useState<IUser | null>(null!);
+    const { authUser } = useUsersDb();
 
     const signIn = async (username: string, password: string) => {
 
-        const user = {id: 1, name: 'Patrick', email: 'patrick.anjos@github.com.br', username, password}
+        console.log("Trying..." + username)
+
+        const response = await authUser(username, password)
+
+        console.log("RESPOMSE : " + response)
+
+        if (!response) {
+            setUser({
+                id: 0,
+                name: null,
+                email: null,
+                username: null,
+                password: null,
+                role: null
+            })
+        }
+
+        const user = {
+            id: response?.id,
+            name: response.name, 
+            email: response.email, 
+            username: response.username, 
+            password: response.password, 
+            role: response.role
+        }
 
         setUser(user)
+
+        console.log({
+            authenticated: true,
+            user: user,
+            role: user?.role,
+        })
     }
 
     const signOut = () => {
